@@ -1,10 +1,15 @@
 local Buttons = {}
-Buttons.font = love.graphics.newFont( "saxmono.ttf", 14)
+--Set to Font
+Buttons.font = love.graphics.newFont("saxmono.ttf", 14)
 
+--Add a button
 function Buttons:add(text,x,y,w,h,func)
     w = w or 6 + 8*text:len()
     Buttons[#Buttons + 1] = {text,x,y,w,h,func}
 end
+
+
+--Call this when the mouse clicks
 function Buttons:update()
     mx, my = love.mouse.getPosition()
     for i = 1, #Buttons do
@@ -13,6 +18,8 @@ function Buttons:update()
         end  
     end
 end
+
+--Draw the buttons
 function Buttons:draw()
     love.graphics.setFont(self.font)
     for i = 1, #Buttons do
@@ -29,7 +36,5 @@ function Buttons:draw()
         love.graphics.print(text,x+3,y+5)
     end
 end
-function Buttons.width(text)
-    return 6 + 8*text:len()
-end
+
 return Buttons
